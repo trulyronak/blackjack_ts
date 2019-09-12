@@ -1,0 +1,28 @@
+{
+  "name": "blackjack-kp-submission",
+  "version": "1.0.0",
+  "description": "BlackJack for Terminal! Written in Typescript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "check": "gts check",
+    "clean": "gts clean",
+    "compile": "tsc -p .",
+    "fix": "gts fix",
+    "prepare": "npm run compile",
+    "pretest": "npm run compile",
+    "posttest": "npm run check"
+  },
+  "keywords": [
+    "blackjack",
+    "typescript",
+    "kleiner-perkins"
+  ],
+  "author": "ronakdev",
+  "license": "ISC",
+  "devDependencies": {
+    "gts": "^1.1.0",
+    "typescript": "~3.5.0",
+    "@types/node": "^10.0.3"
+  }
+}

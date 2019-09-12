@@ -1,0 +1,3 @@
+node_modules/
+# Not adding build so that you can run the project immediately without compiling
+# build/
