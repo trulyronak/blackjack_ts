@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node build/src/",
-    "scratch" : "npm run compile ; npm start",
+    "scratch": "npm run compile ; npm start",
     "check": "gts check",
     "clean": "gts clean",
     "compile": "tsc -p .",
@@ -22,8 +22,12 @@
   "author": "ronakdev",
   "license": "ISC",
   "devDependencies": {
+    "@types/node": "^10.0.3",
+    "@types/readline-sync": "^1.4.3",
     "gts": "^1.1.0",
-    "typescript": "~3.5.0",
-    "@types/node": "^10.0.3"
+    "typescript": "~3.5.0"
+  },
+  "dependencies": {
+    "readline-sync": "^1.4.10"
   }
 }
