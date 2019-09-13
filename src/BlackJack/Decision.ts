@@ -13,13 +13,9 @@ enum Decision {
  * @param s the string to verify
  * @returns {boolean}
  */
-export function verifyStringDecision(s: string) : boolean {
+export function verifyStringDecision(s: string): boolean {
   s = s.toLowerCase();
-  return (
-    s === 'h' ||
-    s === 's' ||
-    s === 'p'
-  );
+  return s === 'h' || s === 's' || s === 'p';
 }
 
 /**

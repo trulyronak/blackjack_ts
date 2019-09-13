@@ -36,7 +36,7 @@ export class BlackJack {
   constructor(
     playerBank: number = BlackJack.PLAYER_DEFAULT_BANK,
     dealerBank: number = BlackJack.DEALER_DEFAULT_BANK,
-    decksToUse: number = 4
+    decksToUse = 4
   ) {
     this.player = new Player('Player', playerBank);
     this.dealer = new Player('Dealer', dealerBank);
@@ -148,7 +148,9 @@ export class BlackJack {
         }`,
         DecisionHelper.verifyStringDecision,
         DecisionHelper.decisionForString,
-        `hs${this.player.canSplit(handIndex) ? "p" : ""}` /* allow "p" (split) if an option */
+        `hs${
+          this.player.canSplit(handIndex) ? 'p' : ''
+        }` /* allow "p" (split) if an option */
       );
 
       switch (decision) {

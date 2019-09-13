@@ -8,4 +8,5 @@ exports.Deck = deck_1.Deck;
 const card_1 = require("./models/card");
 exports.Card = card_1.Card;
 exports.Suite = card_1.Suite;
+exports.charForValue = card_1.charForValue;
 //# sourceMappingURL=index.js.map

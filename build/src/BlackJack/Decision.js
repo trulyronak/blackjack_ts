@@ -18,9 +18,7 @@ exports.Decision = Decision;
  */
 function verifyStringDecision(s) {
     s = s.toLowerCase();
-    return (s === 'h' ||
-        s === 's' ||
-        s === 'p');
+    return s === 'h' || s === 's' || s === 'p';
 }
 exports.verifyStringDecision = verifyStringDecision;
 /**

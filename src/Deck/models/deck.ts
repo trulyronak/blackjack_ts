@@ -40,7 +40,7 @@ export class Deck {
   /**
    * Resets the deck to its initial settings
    */
-  resetDeck() : void {
+  resetDeck(): void {
     this.cards = [];
     for (let d = 0; d < this.decks; d++) {
       for (let value = 1; value <= 13; value++) {
@@ -60,6 +60,9 @@ export class Deck {
    * @returns {Card} The top card of the deck
    */
   draw(): Card {
+    if (this.cards.length === 0) {
+      return new Card(Suite.Unknown, 0);
+    }
     return this.cards.pop() as Card;
   }
 
@@ -90,7 +93,7 @@ export class Deck {
    * Adds a card to the deck (to the bottom)
    * @param {Card} card - the card to add
    */
-  add(card: Card) : void {
+  add(card: Card): void {
     this.cards.push(card);
   }
 
@@ -98,7 +101,7 @@ export class Deck {
    * Merges another array of cards into the Deck
    * @param {Card[]} cards The array of Cards
    */
-  addCards(cards: Card[]) : void {
+  addCards(cards: Card[]): void {
     this.cards = this.cards.concat(cards);
   }
 
@@ -106,7 +109,7 @@ export class Deck {
    * Adds a Deck of Cards to the current deck
    * @param {Deck} deck — the Deck to add
    */
-  addDeck(deck: Deck) : void {
+  addDeck(deck: Deck): void {
     this.addCards(deck.show());
   }
 
@@ -147,7 +150,7 @@ export class Deck {
   /**
    * Sorts the deck (A-K ordering)
    */
-  sort() : void {
+  sort(): void {
     this.cards.sort((a: Card, b: Card): number => {
       if (a.value < b.value) {
         return -1;

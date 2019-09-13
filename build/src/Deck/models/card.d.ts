@@ -13,6 +13,11 @@ export declare enum Suite {
     Unknown = "?"
 }
 /**
+ * Gives the character that matches the card value
+ * @param {number} value - the number to give the character for
+ */
+export declare function charForValue(value: number): string;
+/**
  * A class used to represent a card
  */
 export declare class Card {

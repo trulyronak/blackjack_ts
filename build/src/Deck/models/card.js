@@ -35,6 +35,7 @@ function charForValue(value) {
         return map[value];
     }
 }
+exports.charForValue = charForValue;
 /**
  * A class used to represent a card
  */
@@ -67,7 +68,7 @@ class Card {
      */
     toString() {
         const arr = this.toStringArray();
-        return arr.reduce((acc, next) => { return acc + next + "\n"; }, "");
+        return arr.reduce((acc, next) => acc + next + '\n', '');
     }
 }
 Card.JOKER_VALUE = 14;

@@ -6,7 +6,6 @@ import * as readlineSync from 'readline-sync';
 import { Deck, Card } from '../Deck';
 import { Player } from './Player';
 
-
 export interface UserInterface {
   /**
    * Prompts the user for type of data. Will not exit until a valid response
@@ -25,14 +24,14 @@ export interface UserInterface {
     verify: (res: string) => boolean,
     format: (res: string) => DataType,
     charsAllowed?: string
-  ): DataType
+  ): DataType;
 
   /**
    * Prompts the user for a Yes or No. Will not quit until a valid response
    * @param {string} question - The question to ask
    * @returns {boolean} true if yes, false if no
    */
-  promptYN(question: string): boolean
+  promptYN(question: string): boolean;
 
   /**
    * Prompts the user for a number. Will not quit until a valid response
@@ -40,40 +39,39 @@ export interface UserInterface {
    * @param {string} question - The question to ask
    * @returns {number} number user entered
    */
-  promptNumber(question: string): number
+  promptNumber(question: string): number;
 
   /**
    * Prompts the user for a response. All input is requested on a newline initiated by a '> '
    * @param {string} text - The text to use when prompting the user
    * @returns {string} user input
    */
-  prompt(question: string): string
+  prompt(question: string): string;
 
   /**
    * Outputs text to the user.
    * @param {string} text - The text to output to the user
    */
-  print(text: string): void
+  print(text: string): void;
 
   /**
    * Clears the screen to signify a break. Currently only using line seperators.
    */
-  clear(): void
+  clear(): void;
 
   /**
    * Prints the cards to the screen
    * @param id The user's id
    * @param cards The cards to show
    */
-  showCards(id: string, cards: Card[]): void
+  showCards(id: string, cards: Card[]): void;
 
   /**
    * Prints the specified Player's cards and the total value of them
-   * @param {Player} p - the player whose cards to print 
+   * @param {Player} p - the player whose cards to print
    * @param {number} handIndex? - the hand of the player to print (optional - should default to 0)
    */
-  showHand(p: Player, handIndex?: number) : void
-  
+  showHand(p: Player, handIndex?: number): void;
 }
 
 /**
@@ -187,10 +185,10 @@ export class TerminalUI implements UserInterface {
 
   /**
    * Prints the specified Player's cards and the total value of them
-   * @param {Player} p - the player whose cards to print 
+   * @param {Player} p - the player whose cards to print
    * @param {number} handIndex - the hand of the player to print
    */
-  showHand(p: Player, handIndex: number = 0) {
+  showHand(p: Player, handIndex = 0) {
     const totals = p.totals(handIndex);
     if (p.hands.length > 1) {
       this.print(p.id + ` - Hand #${handIndex + 1}/${p.hands.length}'s cards:`);

@@ -109,7 +109,7 @@ class BlackJack {
             this.ui.showHand(this.player, handIndex);
             this.ui.print(`> Your Balance: $${this.player.balance} | Your Bid: $${this.player.bid} <`);
             // get player decision
-            const decision = this.ui.promptData(`Would you like to hit(h) or stand(s) ${this.player.canSplit(handIndex) ? ' or split (p)?' : '?\n> '}`, DecisionHelper.verifyStringDecision, DecisionHelper.decisionForString, `hs${this.player.canSplit(handIndex) ? 'p' : ''}`);
+            const decision = this.ui.promptData(`Would you like to hit(h) or stand(s) ${this.player.canSplit(handIndex) ? ' or split (p)?' : '?\n> '}`, DecisionHelper.verifyStringDecision, DecisionHelper.decisionForString, `hs${this.player.canSplit(handIndex) ? 'p' : ''}` /* allow "p" (split) if an option */);
             switch (decision) {
                 case Decision_1.Decision.stand: {
                     // base case - prompts loop end

@@ -5,7 +5,7 @@ import { Deck, Card } from '../Deck';
 import { BlackJack } from './BlackJack';
 
 /**
- * Class storing player data and holding some computational code 
+ * Class storing player data and holding some computational code
  */
 export class Player {
   id: string;
@@ -22,7 +22,7 @@ export class Player {
   constructor(id: string, balance: number) {
     this.id = id;
     this.balance = balance;
-    this.bid = 0
+    this.bid = 0;
     this.hands = [new Deck(0)];
   }
 
@@ -66,7 +66,7 @@ export class Player {
    * @param {Card} card - The card to add to the players hand
    * @param {number} handIndex - The hand to add the card to. Defaults to 0, the first hand
    */
-  add(card: Card, handIndex : number = 0) {
+  add(card: Card, handIndex = 0) {
     this.hands[handIndex].add(card);
   }
 
@@ -75,7 +75,7 @@ export class Player {
    * @param {Deck} deck - The cards to add to the players hand
    * @param {number} handIndex - The hand to add the card to. Defaults to 0, the first hand
    */
-  addDeck(deck: Deck, handIndex : number = 0) {
+  addDeck(deck: Deck, handIndex = 0) {
     this.hands[handIndex].addDeck(deck);
   }
 
@@ -84,7 +84,7 @@ export class Player {
    * @param {number} handIndex - the index of which hand to find the total for
    * @returns {number} the best total (closest to BlackJack)
    */
-  total(handIndex : number= 0): number {
+  total(handIndex = 0): number {
     const totals = this.totals(handIndex);
     let bestScoreIndex = 0;
     for (let totalIndex = 0; totalIndex < totals.length; totalIndex++) {
@@ -108,7 +108,7 @@ export class Player {
    * @param {number} handIndex - the hand to check about
    * @returns {number[]} all possible totals based on the hand
    */
-  totals(handIndex : number = 0): number[] {
+  totals(handIndex = 0): number[] {
     const totals: number[] = [0];
     const hand = this.hands[handIndex];
 
@@ -153,7 +153,7 @@ export class Player {
    * @param {number} - the hand to check
    * @returns {boolean} true if player bust, false if not
    */
-  hasBust(handIndex = 0) : boolean {
+  hasBust(handIndex = 0): boolean {
     return this.total(handIndex) > BlackJack.WIN_NUMBER;
   }
 

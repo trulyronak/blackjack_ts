@@ -92,6 +92,20 @@ I purposely made sure almost every action within the actual game takes as little
 
 I also ask the user about clearing - the best experience is yes, but I provided the alternative in case the user wanted an easy way to see their progress (users who opt to clear can simply scroll to see their history).
 
+
+**Tests**
+
+My weakest skill is tests. I learned how to do basic unit testing primarily from the two internships I did (chai @ Zesty, JUnit @ US Digital Service). I wasn't entirely sure how to properly implement tests for the `BlackJack` class, but I did do some rudimentary tests for `Deck` and `Card` using Chai and Mocha. 
+
+Since I'm not great at testing, I'm taking CSE 110 - Software Engineering this year to make sure I get an academic setting to learn tests. Additionally, through my work with ACM at UC San Diego, we're making sure to be doing test-driven development. 
+
+
+To run the tests I've included,
+
+	npm test
+
+will suffice.
+
 ## Background and Disclaimer
 
 Last year, I submitted blackjack as my coding sample. However, because I heard about KP too late, I didn't have to make the best sample that truly represented my abilities. This time, I did have the time. I reused some of the original code, but instead rewrote the entire project in Typescript, a language my mentor and boss had told me about while working at the US Digital Service. This project provided to be an amazing way to learn about Typescript's features, and I now feel confident listing Typescript as a skill.

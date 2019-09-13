@@ -49,6 +49,9 @@ class Deck {
      * @returns {Card} The top card of the deck
      */
     draw() {
+        if (this.cards.length === 0) {
+            return new card_1.Card(card_1.Suite.Unknown, 0);
+        }
         return this.cards.pop();
     }
     /**

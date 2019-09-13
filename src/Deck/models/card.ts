@@ -17,7 +17,7 @@ export enum Suite {
  * Gives the character that matches the card value
  * @param {number} value - the number to give the character for
  */
-function charForValue(value: number): string {
+export function charForValue(value: number): string {
   if (value >= 2 && value <= 10) {
     return `${value}`;
   } else {
@@ -79,6 +79,6 @@ export class Card {
    */
   toString(): string {
     const arr = this.toStringArray();
-    return arr.reduce((acc, next) => {return acc + next + "\n"}, "");
+    return arr.reduce((acc, next) => acc + next + '\n', '');
   }
 }

@@ -1,5 +1,5 @@
-import {BlackJack} from "./BlackJack";
+import { BlackJack } from './BlackJack';
 
-let game = new BlackJack();
+const game = new BlackJack();
 
 game.play();
