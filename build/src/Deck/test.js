@@ -1,5 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * @fileoverview Used for to make sure Deck works. Manual check, didn't end up writing concrete automatable checks
+ */
 const _1 = require("./");
 const deck = new _1.Deck(1, 4);
 console.log(deck.toString());

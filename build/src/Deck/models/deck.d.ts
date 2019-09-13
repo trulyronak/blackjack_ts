@@ -1,4 +1,10 @@
+/**
+ * @fileoverview Contains the Deck Class
+ */
 import { Card } from './card';
+/**
+ * A Class used to represent a Deck of cards
+ */
 export declare class Deck {
     static readonly DEFAULT_JOKERS_AMOUNT = 0;
     static readonly DEFAULT_DECKS_COUNT = 1;
@@ -13,15 +19,17 @@ export declare class Deck {
      */
     constructor(decks?: number, jokers?: number);
     /**
-     * Create Deck
+     * Resets the deck to its initial settings
      */
     resetDeck(): void;
     /**
      * Removes the top card of the deck
+     * @returns {Card} The top card of the deck
      */
     draw(): Card;
     /**
      * Shows the top card of the Deck
+     * @returns {Card} The top card of the deck
      */
     peek(): Card;
     /**
@@ -30,6 +38,7 @@ export declare class Deck {
     shuffle(): void;
     /**
      * Returns the count of the number of cards in the deck
+     * @returns {number} the number of cards in the deck
      */
     count(): number;
     /**
@@ -39,7 +48,6 @@ export declare class Deck {
     add(card: Card): void;
     /**
      * Merges another array of cards into the Deck
-     *
      * @param {Card[]} cards The array of Cards
      */
     addCards(cards: Card[]): void;
@@ -50,23 +58,25 @@ export declare class Deck {
     addDeck(deck: Deck): void;
     /**
      * Deals the deck based on the specified options (splits the deck)
-     *
      * @param players number - the amount of players to deal to (the amount of deck objects)
      * @param size number - how many cards to allocate per person (if too high, will return empty array).
      *                       If left unset, will distribute deck equally among participants (with some uneveness
      *                       depending on player count)
+     * @returns {Deck[]} an array of decks (length == size) with the dealt cards
      */
     deal(players: number, size?: number): Deck[];
     /**
-     * Sorts the deck (A-K)
+     * Sorts the deck (A-K ordering)
      */
     sort(): void;
     /**
      * Returns the deck in array form
+     * @returns {Card[]} all cards in the deck
      */
     show(): Card[];
     /**
      * Gives a string version of the deck (shows 4 cards per row)
+     * @returns {string} Neatly drawn cards in the deck
      */
     toString(): string;
 }

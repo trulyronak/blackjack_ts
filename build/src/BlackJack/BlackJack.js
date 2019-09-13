@@ -196,7 +196,7 @@ class BlackJack {
     endGame() {
         this.ui.print(`Your Balance: $${this.player.balance} | Your Bid: $${this.player.bid}`);
         this.ui.print("You've been bankrupted!");
-        this.ui.print('Exiting with failure :(');
+        this.ui.print('You can no longer play in this process :(');
     }
     continuePlaying() {
         this.player.bid = 0;

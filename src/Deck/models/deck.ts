@@ -1,6 +1,13 @@
+/**
+ * @fileoverview Contains the Deck Class
+ */
+
 import { Card, Suite } from './card';
 import { shuffle as shuffleArray } from './../utils/shuffle';
 
+/**
+ * A Class used to represent a Deck of cards
+ */
 export class Deck {
   static readonly DEFAULT_JOKERS_AMOUNT = 0;
   static readonly DEFAULT_DECKS_COUNT = 1;
@@ -31,9 +38,9 @@ export class Deck {
   }
 
   /**
-   * Create Deck
+   * Resets the deck to its initial settings
    */
-  resetDeck() {
+  resetDeck() : void {
     this.cards = [];
     for (let d = 0; d < this.decks; d++) {
       for (let value = 1; value <= 13; value++) {
@@ -50,6 +57,7 @@ export class Deck {
 
   /**
    * Removes the top card of the deck
+   * @returns {Card} The top card of the deck
    */
   draw(): Card {
     return this.cards.pop() as Card;
@@ -57,6 +65,7 @@ export class Deck {
 
   /**
    * Shows the top card of the Deck
+   * @returns {Card} The top card of the deck
    */
   peek(): Card {
     return this.cards[0];
@@ -71,6 +80,7 @@ export class Deck {
 
   /**
    * Returns the count of the number of cards in the deck
+   * @returns {number} the number of cards in the deck
    */
   count(): number {
     return this.cards.length;
@@ -80,16 +90,15 @@ export class Deck {
    * Adds a card to the deck (to the bottom)
    * @param {Card} card - the card to add
    */
-  add(card: Card) {
+  add(card: Card) : void {
     this.cards.push(card);
   }
 
   /**
    * Merges another array of cards into the Deck
-   *
    * @param {Card[]} cards The array of Cards
    */
-  addCards(cards: Card[]) {
+  addCards(cards: Card[]) : void {
     this.cards = this.cards.concat(cards);
   }
 
@@ -97,17 +106,17 @@ export class Deck {
    * Adds a Deck of Cards to the current deck
    * @param {Deck} deck — the Deck to add
    */
-  addDeck(deck: Deck) {
+  addDeck(deck: Deck) : void {
     this.addCards(deck.show());
   }
 
   /**
    * Deals the deck based on the specified options (splits the deck)
-   *
    * @param players number - the amount of players to deal to (the amount of deck objects)
    * @param size number - how many cards to allocate per person (if too high, will return empty array).
    *                       If left unset, will distribute deck equally among participants (with some uneveness
    *                       depending on player count)
+   * @returns {Deck[]} an array of decks (length == size) with the dealt cards
    */
   deal(players: number, size?: number): Deck[] {
     const decks: Deck[] = [];
@@ -136,9 +145,9 @@ export class Deck {
   }
 
   /**
-   * Sorts the deck (A-K)
+   * Sorts the deck (A-K ordering)
    */
-  sort() {
+  sort() : void {
     this.cards.sort((a: Card, b: Card): number => {
       if (a.value < b.value) {
         return -1;
@@ -152,6 +161,7 @@ export class Deck {
 
   /**
    * Returns the deck in array form
+   * @returns {Card[]} all cards in the deck
    */
   show(): Card[] {
     return this.cards;
@@ -159,6 +169,7 @@ export class Deck {
 
   /**
    * Gives a string version of the deck (shows 4 cards per row)
+   * @returns {string} Neatly drawn cards in the deck
    */
   toString(): string {
     let str = '';

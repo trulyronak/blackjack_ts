@@ -1,3 +1,6 @@
+/**
+ * @fileoverview Used for to make sure Deck works. Manual check, didn't end up writing concrete automatable checks
+ */
 import { Deck, Card, Suite } from './';
 
 const deck = new Deck(1, 4);

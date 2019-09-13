@@ -1,7 +1,13 @@
 "use strict";
+/**
+ * @fileoverview Contains the Deck Class
+ */
 Object.defineProperty(exports, "__esModule", { value: true });
 const card_1 = require("./card");
 const shuffle_1 = require("./../utils/shuffle");
+/**
+ * A Class used to represent a Deck of cards
+ */
 class Deck {
     /**
      * Creates a deck object (init with decks = 0 to create an empty deck)
@@ -22,7 +28,7 @@ class Deck {
         this.resetDeck();
     }
     /**
-     * Create Deck
+     * Resets the deck to its initial settings
      */
     resetDeck() {
         this.cards = [];
@@ -40,12 +46,14 @@ class Deck {
     }
     /**
      * Removes the top card of the deck
+     * @returns {Card} The top card of the deck
      */
     draw() {
         return this.cards.pop();
     }
     /**
      * Shows the top card of the Deck
+     * @returns {Card} The top card of the deck
      */
     peek() {
         return this.cards[0];
@@ -58,6 +66,7 @@ class Deck {
     }
     /**
      * Returns the count of the number of cards in the deck
+     * @returns {number} the number of cards in the deck
      */
     count() {
         return this.cards.length;
@@ -71,7 +80,6 @@ class Deck {
     }
     /**
      * Merges another array of cards into the Deck
-     *
      * @param {Card[]} cards The array of Cards
      */
     addCards(cards) {
@@ -86,11 +94,11 @@ class Deck {
     }
     /**
      * Deals the deck based on the specified options (splits the deck)
-     *
      * @param players number - the amount of players to deal to (the amount of deck objects)
      * @param size number - how many cards to allocate per person (if too high, will return empty array).
      *                       If left unset, will distribute deck equally among participants (with some uneveness
      *                       depending on player count)
+     * @returns {Deck[]} an array of decks (length == size) with the dealt cards
      */
     deal(players, size) {
         const decks = [];
@@ -113,7 +121,7 @@ class Deck {
         return decks;
     }
     /**
-     * Sorts the deck (A-K)
+     * Sorts the deck (A-K ordering)
      */
     sort() {
         this.cards.sort((a, b) => {
@@ -130,12 +138,14 @@ class Deck {
     }
     /**
      * Returns the deck in array form
+     * @returns {Card[]} all cards in the deck
      */
     show() {
         return this.cards;
     }
     /**
      * Gives a string version of the deck (shows 4 cards per row)
+     * @returns {string} Neatly drawn cards in the deck
      */
     toString() {
         let str = '';
