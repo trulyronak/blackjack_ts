@@ -13,8 +13,18 @@ This contains the code for my Kleiner Perkins Coding Submission. Created by [Ron
 
 ## How to Run | Setup
 
-
 This project is written in [node.js](https://nodejs.org/) and [typescript](typescriptlang.org/). For your convenience, I have precompiled this project so the output javascript is there.
+
+First, you'll need to get the project
+
+	git clone https://github.com/ronakdev/blackjack_ts
+	cd blackjack_ts
+	
+Or, if you don't have git
+
+	wget https://github.com/ronakdev/blackjack_ts/archive/master.zip
+	unzip master.zip
+	cd blackjack_ts-master/
 
 To run this, you'll first need to install `node` (`npm` should install with it as well)
 
@@ -43,6 +53,7 @@ Don't worry, it's super simple to install! Follow [this guide](https://nodejs.or
 Once you have node and npm installed, simply run `npm start`. If you run into issues, you may need to install the required packages (`npm install`)
 
 	npm start
+	
 
 ## Decisions Made
 
@@ -67,15 +78,16 @@ The actual game itself is broken up into 3 classes - `BlackJack`, `Interface`, a
 
 I wrote the core game class, `BlackJack` by taking the logic from last year's submission and heavily modularizing the components. By doing so, I cleaned up the code, made it more efficient, and fixed several bugs.
 
-The `Interface` class was written to keep ui printing away from the main game. If this game was to be ported to a different medium, the existing `Interface` would easily be able to become true to its name and be used as an [`interface`](https://www.typescriptlang.org/docs/handbook/interfaces.html) for that different medium.
+The `UserInterface` class was written to keep ui printing away from the main game. If this game was to be ported to a different medium, the existing `Interface` would easily be able to become true to its name and be used as an [`interface`](https://www.typescriptlang.org/docs/handbook/interfaces.html) for that different medium.
 
-In `Interface`, a method exists called `promptData()`. This function prompts the user for any custom data type and will not quit until it passes the user-specified verification method. This method is extremely powerful and is used to write the other prompt methods and is also why the `Decision` enum exists.
+In `UserInterface`, a method exists called `promptData()`. This function prompts the user for any custom data type and will not quit until it passes the user-specified verification method. This method is extremely powerful and is used to write the other prompt methods and is also why the `Decision` enum exists.
 
 In `BlackJack`, we prompt the user for a decision, which utilizing `promptData()`, we're able to get a guranteed exhaustive case checking to help with the backend logic.
 
 Lastly, the `Player` class manages the balance, bid, and cards for the user and the dealer. To implement splitting, I followed my advice from last year (in that writeup I wrote about what I would change to make splitting work) and have an instance variable called `hands` in the `Player` class, which contains every possible hand for the Player.
 
-_Some UI Notes_
+**Some UI Notes**
+
 I purposely made sure almost every action within the actual game takes as little keystrokes as possible. Every decision can be made by a single key press (no enter needed!) with the only exception of entering the users bid.
 
 I also ask the user about clearing - the best experience is yes, but I provided the alternative in case the user wanted an easy way to see their progress (users who opt to clear can simply scroll to see their history).
