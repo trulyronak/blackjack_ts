@@ -1,6 +1,6 @@
 "use strict";
 /**
- * @fileoverview Contains interface class and some number verification functions
+ * @fileoverview Contains the interface for communicating information and some number verification functions
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 const readlineSync = require("readline-sync");
@@ -8,7 +8,7 @@ const Deck_1 = require("../Deck");
 /**
  * Class handling UI interaction
  */
-class Interface {
+class TerminalUI {
     /**
      * Creates a text-based interface and prompts user if they like clearing
      */
@@ -113,7 +113,7 @@ class Interface {
         this.print(p.hands[handIndex].toString());
     }
 }
-exports.Interface = Interface;
+exports.TerminalUI = TerminalUI;
 // relics of my old promptData - kept to show progress
 /**
  * Verifies whether a string is either yes(y) or no(n)

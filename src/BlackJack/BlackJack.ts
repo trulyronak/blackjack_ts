@@ -3,7 +3,7 @@
  */
 
 import { Player } from './Player';
-import { Interface } from './Interface';
+import { TerminalUI, UserInterface } from './Interface';
 import * as InterfaceHelper from './Interface';
 import { Deck, Card } from '../Deck';
 import { Decision } from './Decision';
@@ -22,7 +22,7 @@ export class BlackJack {
   private dealer: Player;
   private deck: Deck;
 
-  private ui: Interface;
+  private ui: UserInterface;
   private bid = 0;
   private roundsPlayed = 0;
 
@@ -42,7 +42,7 @@ export class BlackJack {
     this.dealer = new Player('Dealer', dealerBank);
     this.deck = new Deck(decksToUse);
     this.deck.shuffle();
-    this.ui = new Interface();
+    this.ui = new TerminalUI();
   }
 
   /**
@@ -148,7 +148,7 @@ export class BlackJack {
         }`,
         DecisionHelper.verifyStringDecision,
         DecisionHelper.decisionForString,
-        `hs${this.player.canSplit(handIndex) ? 'p' : ''}`
+        `hs${this.player.canSplit(handIndex) ? "p" : ""}` /* allow "p" (split) if an option */
       );
 
       switch (decision) {

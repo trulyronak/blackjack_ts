@@ -28,7 +28,7 @@ class BlackJack {
         this.dealer = new Player_1.Player('Dealer', dealerBank);
         this.deck = new Deck_1.Deck(decksToUse);
         this.deck.shuffle();
-        this.ui = new Interface_1.Interface();
+        this.ui = new Interface_1.TerminalUI();
     }
     /**
      * Plays the game. Runs asynchronously to imitate dealer thought
