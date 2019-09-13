@@ -1,1 +1,1 @@
-declare function test(): string;
+export {};

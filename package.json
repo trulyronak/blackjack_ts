@@ -4,7 +4,8 @@
   "description": "BlackJack for Terminal! Written in Typescript",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node build/src/",
+    "scratch" : "npm run compile ; npm start",
     "check": "gts check",
     "clean": "gts clean",
     "compile": "tsc -p .",

@@ -26,6 +26,9 @@ function charForValue(value: number): string {
 export class Card {
   static readonly JOKER_VALUE = 14;
   static readonly MYSTERY_VALUE = 0;
+  static readonly JACK_VALUE = 11;
+  static readonly QUEEN_VALUE = 12;
+  static readonly KING_VALUE = 13;
   static readonly MYSTERY: Card = new Card(Suite.Unknown, Card.MYSTERY_VALUE);
 
   suite: Suite;
