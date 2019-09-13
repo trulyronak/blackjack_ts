@@ -1,4 +1,7 @@
 "use strict";
+/**
+ * @fileoverview Contains the master game code for BlackJack
+ */
 Object.defineProperty(exports, "__esModule", { value: true });
 const Player_1 = require("./Player");
 const Interface_1 = require("./Interface");
@@ -7,7 +10,17 @@ const Deck_1 = require("../Deck");
 const Decision_1 = require("./Decision");
 const DecisionHelper = require("./Decision");
 const delay_1 = require("./delay");
+/**
+ * A Class that manages a game of BlackJack
+ */
 class BlackJack {
+    /**
+     * Makes the BlackJack game. Prompts the user about inteface settings on call.
+     * All parameters optional (default values provided)
+     * @param {number} playerBank - How much money the player starts off with
+     * @param {number} dealerBank - How much money the dealer starts off with
+     * @param {number} decksToUse - How many decks to use in the game
+     */
     constructor(playerBank = BlackJack.PLAYER_DEFAULT_BANK, dealerBank = BlackJack.DEALER_DEFAULT_BANK, decksToUse = 4) {
         this.bid = 0;
         this.roundsPlayed = 0;
@@ -17,6 +30,9 @@ class BlackJack {
         this.deck.shuffle();
         this.ui = new Interface_1.Interface();
     }
+    /**
+     * Plays the game. Runs asynchronously to imitate dealer thought
+     */
     async play() {
         this.ui.print('Welcome to Black Jack!');
         do {
@@ -26,11 +42,14 @@ class BlackJack {
             await this.dealerDecisions();
             this.decideOutcome();
             if (this.player.balance <= 0) {
-                this.endGame();
+                this.endGame(true); // lost
                 return;
             }
         } while (this.continuePlaying());
     }
+    /**
+     * Starts up the round by alerting the player, and resetting the decks (every 3 rounds)
+     */
     startRound() {
         if (this.roundsPlayed !== 0 && this.roundsPlayed % 3 === 0) {
             this.deck.resetDeck();
@@ -40,6 +59,9 @@ class BlackJack {
         this.ui.print('==========================================');
         this.roundsPlayed++;
     }
+    /**
+     * Gets the players bid and deals cards
+     */
     setup() {
         // get bid
         const bid = this.ui.promptData('How much would you like to bid?', (str) => {
@@ -74,6 +96,10 @@ class BlackJack {
         this.player.addDeck(distribution[0]);
         this.dealer.addDeck(distribution[1]);
     }
+    /**
+     * Prompts the user for decisions and runs logic behind them
+     * @param handIndex Which hand of the user's to make decisions for. Defaults to 0 (initial)
+     */
     async playerDecisions(handIndex = 0) {
         let playerDecisionsExhausted = false;
         while (!playerDecisionsExhausted) {
@@ -151,6 +177,9 @@ class BlackJack {
         }
         this.ui.print(`Dealer decides to stay at ${this.dealer.total()}!`);
     }
+    /**
+     * Determines who won the round of BlackJack
+     */
     decideOutcome() {
         this.ui.clear();
         this.ui.showHand(this.dealer);
@@ -193,19 +222,30 @@ class BlackJack {
             }
         }
     }
-    endGame() {
-        this.ui.print(`Your Balance: $${this.player.balance} | Your Bid: $${this.player.bid}`);
-        this.ui.print("You've been bankrupted!");
-        this.ui.print('You can no longer play in this process :(');
+    /**
+     * Prints end game (loss) stats
+     * @param {boolean} lost - Whether or not the player lost
+     */
+    endGame(lost) {
+        this.ui.print(`Final Balance: $${this.player.balance} Dealer Balance: $${this.dealer.balance}`);
+        if (lost) {
+            this.ui.print("You've been bankrupted!");
+            this.ui.print('You can no longer play in this process :(');
+        }
+        else {
+            this.ui.print('Thanks for playing!'); // surviors get thanks :(
+            this.ui.print('See you next time!');
+        }
     }
+    /**
+     * Checks if the player wants to still play, ends the game if they're done
+     */
     continuePlaying() {
         this.player.bid = 0;
         this.roundsPlayed++;
         this.ui.print(`Your Balance: $${this.player.balance} | Your Bid: $${this.player.bid}`);
         if (!this.ui.promptYN('Continue Playing?')) {
-            this.ui.print('Thanks for playing!');
-            this.ui.print(`Final Balance: $${this.player.balance} Dealer Balance: $${this.dealer.balance}`);
-            this.ui.print('See you next time!');
+            this.endGame(false); // player didn't lose
             return false;
         }
         this.ui.clear();

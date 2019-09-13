@@ -1,5 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * Types of decisions a player can make
+ * @enum {string}
+ */
 var Decision;
 (function (Decision) {
     Decision["hit"] = "h";
@@ -7,16 +11,23 @@ var Decision;
     Decision["split"] = "sp";
 })(Decision || (Decision = {}));
 exports.Decision = Decision;
+/**
+ * Makes sure a string matches a decision type
+ * @param s the string to verify
+ * @returns {boolean}
+ */
 function verifyStringDecision(s) {
     s = s.toLowerCase();
     return (s === 'h' ||
-        s === 'hit' ||
         s === 's' ||
-        s === 'stand' ||
-        s === 'p' ||
-        s === 'split');
+        s === 'p');
 }
 exports.verifyStringDecision = verifyStringDecision;
+/**
+ * Converts a string to a Decision enum. Assumes string was verified
+ * @param s the verified string to convert
+ * @returns {Decision}
+ */
 function decisionForString(s) {
     s = s.toLowerCase();
     if (s.charAt(0) === 'h') {

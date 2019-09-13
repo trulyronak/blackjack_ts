@@ -1,10 +1,11 @@
+/**
+ * @fileoverview holds player class
+ */
 import { Deck, Card } from '../Deck';
 import { BlackJack } from './BlackJack';
 
 /**
- * @fileoverview class storing player data and holding some computational code (for cleanness)
- * @author ronakshah
- * @created 09/28/2018
+ * Class storing player data and holding some computational code 
  */
 export class Player {
   id: string;
@@ -14,31 +15,46 @@ export class Player {
   smallTotal = 17;
 
   /**
-   * Create a player object.
+   * Creates a player object.
+   * @param {string} id - The id of the player
    * @param {number} balance - The amount of money that player initially has in their bank
    */
-  constructor(id: string, balance: number, bid?: number, hands?: Deck[]) {
+  constructor(id: string, balance: number) {
     this.id = id;
     this.balance = balance;
-    this.bid = bid === undefined ? 0 : bid;
-    this.hands = hands === undefined ? [new Deck(0)] : hands;
+    this.bid = 0
+    this.hands = [new Deck(0)];
   }
 
+  /**
+   * Bets an amount and subtracts from the bank accordingly
+   * @param {number} bid the amount to bid
+   */
   bet(bid: number) {
     this.balance -= bid;
     this.bid = bid;
   }
 
+  /**
+   * Returns bid back to player
+   */
   tie() {
     this.balance += this.bid;
   }
+
+  /**
+   * Adds winnings to player's balance
+   */
   win() {
     this.balance += this.bid * 2;
   }
 
+  /**
+   * Adds winnings for each hand the player made if the hand had not bust
+   */
   winAll() {
     for (let handIndex = 0; handIndex < this.hands.length; handIndex++) {
-      if (this.total(handIndex) <= BlackJack.WIN_NUMBER) {
+      if (!this.hasBust(handIndex)) {
         // didn't bust
         this.win();
       }
@@ -50,7 +66,7 @@ export class Player {
    * @param {Card} card - The card to add to the players hand
    * @param {number} handIndex - The hand to add the card to. Defaults to 0, the first hand
    */
-  add(card: Card, handIndex = 0) {
+  add(card: Card, handIndex : number = 0) {
     this.hands[handIndex].add(card);
   }
 
@@ -59,16 +75,16 @@ export class Player {
    * @param {Deck} deck - The cards to add to the players hand
    * @param {number} handIndex - The hand to add the card to. Defaults to 0, the first hand
    */
-  addDeck(deck: Deck, handIndex = 0) {
+  addDeck(deck: Deck, handIndex : number = 0) {
     this.hands[handIndex].addDeck(deck);
   }
 
   /**
-   * Calculate the total sum of your cards. Will return the lowest value possible (if you have an ace)
-   *
+   * Calculates the total sum of your cards. Will return the lowest value possible (if you have an ace)
    * @param {number} handIndex - the index of which hand to find the total for
+   * @returns {number} the best total (closest to BlackJack)
    */
-  total(handIndex = 0): number {
+  total(handIndex : number= 0): number {
     const totals = this.totals(handIndex);
     let bestScoreIndex = 0;
     for (let totalIndex = 0; totalIndex < totals.length; totalIndex++) {
@@ -90,8 +106,9 @@ export class Player {
    * Returns all totals possible with your hand (sorted)
    *
    * @param {number} handIndex - the hand to check about
+   * @returns {number[]} all possible totals based on the hand
    */
-  totals(handIndex = 0): number[] {
+  totals(handIndex : number = 0): number[] {
     const totals: number[] = [0];
     const hand = this.hands[handIndex];
 
@@ -117,6 +134,7 @@ export class Player {
 
   /**
    * Returns the best score the player has (among all decks)
+   * @returns the best score
    */
   bestScoreOverall(): number {
     let bestScore = 0;
@@ -132,16 +150,15 @@ export class Player {
 
   /**
    * Returns whether the player bust or not
-   *
    * @param {number} - the hand to check
+   * @returns {boolean} true if player bust, false if not
    */
-  hasBust(handIndex = 0) {
+  hasBust(handIndex = 0) : boolean {
     return this.total(handIndex) > BlackJack.WIN_NUMBER;
   }
 
   /**
-   * Returns whether the player bust
-   *
+   * Returns whether the player bust on all hands
    * @returns True if the player bust on all hands, false if there is are hand(s) that haven't bust
    */
   hasBustOverall(): boolean {
@@ -156,6 +173,8 @@ export class Player {
 
   /**
    * Determines if the player has a "soft" hand at 17 or higher (ie if they have an ace)
+   * Used by Dealer exclusively
+   * @returns {boolean} true if player had a soft hand
    */
   softHand(): boolean {
     // this method is called if the dealer has a hand of 17 or more;
@@ -165,9 +184,8 @@ export class Player {
 
   /**
    * Splits the players deck - assumes that deck can be split already
-   *
    * @param {number} handIndex - the hand to split off of
-   * @return {[number, number]} - tuple containing the two new handIndices
+   * @returns {[number, number]} - tuple containing the two new handIndices
    */
   split(handIndex: number): [number, number] {
     // money first
@@ -195,8 +213,8 @@ export class Player {
 
   /**
    * Determines whether the player can 'split' (ie if they have 2 of the same card and only have 2 cards)
-   *
    * @param {number} handIndex - the hand to check
+   * @returns {boolean} true if splittable, false if not
    */
   canSplit(handIndex: number): boolean {
     const cards = this.hands[handIndex].show();
@@ -209,6 +227,9 @@ export class Player {
     }
   }
 
+  /**
+   * Removes all hands from the player and leaves it with one empty hand
+   */
   reset() {
     this.hands = [new Deck(0)];
   }
