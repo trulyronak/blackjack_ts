@@ -12,7 +12,6 @@ export declare class BlackJack {
     private dealer;
     private deck;
     private ui;
-    private bid;
     private roundsPlayed;
     /**
      * Makes the BlackJack game. Prompts the user about inteface settings on call.

@@ -56,12 +56,12 @@ export declare class Player {
      * Returns all totals possible with your hand (sorted)
      *
      * @param {number} handIndex - the hand to check about
-     * @returns {number[]} all possible totals based on the hand
+     * @returns {number[]} all possible totals based on the hand (sorted)
      */
     totals(handIndex?: number): number[];
     /**
      * Returns the best score the player has (among all decks)
-     * @returns the best score
+     * @returns the best score (if no score is under blackjack, returns the first hand's total)
      */
     bestScoreOverall(): number;
     /**

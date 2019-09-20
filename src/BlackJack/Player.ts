@@ -67,7 +67,13 @@ export class Player {
    * @param {number} handIndex - The hand to add the card to. Defaults to 0, the first hand
    */
   add(card: Card, handIndex = 0) {
-    this.hands[handIndex].add(card);
+    if (!this.hands.hasOwnProperty(handIndex)) {
+      const deck = new Deck(0);
+      deck.add(card);
+      this.hands.splice(handIndex, 0, deck);
+    } else {
+      this.hands[handIndex].add(card);
+    }
   }
 
   /**
@@ -76,7 +82,11 @@ export class Player {
    * @param {number} handIndex - The hand to add the card to. Defaults to 0, the first hand
    */
   addDeck(deck: Deck, handIndex = 0) {
-    this.hands[handIndex].addDeck(deck);
+    if (!this.hands.hasOwnProperty(handIndex)) {
+      this.hands.splice(handIndex, 0, deck);
+    } else {
+      this.hands[handIndex].addDeck(deck);
+    }
   }
 
   /**
@@ -106,7 +116,7 @@ export class Player {
    * Returns all totals possible with your hand (sorted)
    *
    * @param {number} handIndex - the hand to check about
-   * @returns {number[]} all possible totals based on the hand
+   * @returns {number[]} all possible totals based on the hand (sorted)
    */
   totals(handIndex = 0): number[] {
     const totals: number[] = [0];
@@ -129,22 +139,21 @@ export class Player {
       }
     }
 
-    return totals.sort();
+    return totals.sort((a, b) => a - b); // numerical-based sort
   }
 
   /**
    * Returns the best score the player has (among all decks)
-   * @returns the best score
+   * @returns the best score (if no score is under blackjack, returns the first hand's total)
    */
   bestScoreOverall(): number {
-    let bestScore = 0;
+    let bestScore = this.total(0);
     for (let handIndex = 0; handIndex < this.hands.length; handIndex++) {
       const total = this.total(handIndex);
       if (total <= BlackJack.WIN_NUMBER && total > bestScore) {
         bestScore = total;
       }
     }
-
     return bestScore;
   }
 

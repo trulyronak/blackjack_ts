@@ -14,7 +14,7 @@ class TerminalUI {
      */
     constructor() {
         this.shouldClear = false;
-        if (readlineSync.keyInYN('Would you like to clear the console after each hit/stand?')) {
+        if (readlineSync.keyInYNStrict('Would you like to clear the console after each hit/stand?')) {
             this.shouldClear = true;
             this.clear();
         }

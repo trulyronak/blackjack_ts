@@ -23,7 +23,6 @@ export class BlackJack {
   private deck: Deck;
 
   private ui: UserInterface;
-  private bid = 0;
   private roundsPlayed = 0;
 
   /**

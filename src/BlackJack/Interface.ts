@@ -85,7 +85,7 @@ export class TerminalUI implements UserInterface {
    */
   constructor() {
     if (
-      readlineSync.keyInYN(
+      readlineSync.keyInYNStrict(
         'Would you like to clear the console after each hit/stand?'
       )
     ) {

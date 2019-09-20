@@ -22,7 +22,6 @@ class BlackJack {
      * @param {number} decksToUse - How many decks to use in the game
      */
     constructor(playerBank = BlackJack.PLAYER_DEFAULT_BANK, dealerBank = BlackJack.DEALER_DEFAULT_BANK, decksToUse = 4) {
-        this.bid = 0;
         this.roundsPlayed = 0;
         this.player = new Player_1.Player('Player', playerBank);
         this.dealer = new Player_1.Player('Dealer', dealerBank);
