@@ -107,5 +107,5 @@ To run the tests I've included, simply run
 
 ## Background and Disclaimer
 
-Last year, I submitted blackjack as my coding sample. However, because I heard about KP too late, I didn't have to make the best sample that truly represented my abilities. This time, I did have the time. I reused some of the original code, but instead rewrote the entire project in Typescript, a language my mentor and boss had told me about while working at the US Digital Service. This project provided to be an amazing way to learn about Typescript's features, and I now feel confident listing Typescript as a skill.
+Last year, I submitted [blackjack](https://github.com/ronakdev/blackjack) as my coding sample. However, because I heard about KP too late, I didn't have to make the best sample that truly represented my abilities. This time, I did have the time. I reused some of the original code, but instead rewrote the entire project in Typescript, a language my mentor and boss had told me about while working at the US Digital Service. This project provided to be an amazing way to learn about Typescript's features, and I now feel confident listing Typescript as a skill.
 
