@@ -95,16 +95,15 @@ I also ask the user about clearing - the best experience is yes, but I provided 
 
 **Tests**
 
-My weakest skill is tests. I learned how to do basic unit testing primarily from the two internships I did (chai @ Zesty, JUnit @ US Digital Service). I wasn't entirely sure how to properly implement tests for the `BlackJack` class, but I did do some rudimentary tests for `Deck` and `Card` using Chai and Mocha. 
+I confess that testing is where I need to improve the most. My testing experience froms primarily from the basic unit testing I did in my past two internships I did (chai @ Zesty, JUnit @ US Digital Service). I wasn't entirely sure how to properly implement tests for the `BlackJack` class, but I wrote simple tests for `Deck`, `Card`, and `Player` using Chai and Mocha — and fixed some bugs, most notably [Javascript's use of lexicographic sorting](https://stackoverflow.com/a/1063032/4166655) (when I had assumed numeric).
 
 Since I'm not great at testing, I'm taking CSE 110 - Software Engineering this year to make sure I get an academic setting to learn tests. Additionally, through my work with ACM at UC San Diego, we're making sure to be doing test-driven development. 
 
 
-To run the tests I've included,
+To run the tests I've included, simply run
 
 	npm test
 
-will suffice.
 
 ## Background and Disclaimer
 
